@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XicoRutas | Detalle de la Ruta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">XICORUTAS</a>
+            <button class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="index.html#categorias" class="nav-link">Categorías</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Comunidad</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="contenedor-detalle">
+        
+        <section class="info-ruta">
+            <span class="badge-categoria">Intermedios</span>
+            <h1 class="nombre-ruta">Circuito de Carranza</h1>
+            <p class="descripcion-larga">
+                Un recorrido espectacular que combina senderos técnicos de tierra compacta, descensos divertidos entre árboles y un par de ascensos exigentes que pondrán a prueba tus piernas. Ideal para rodar por la mañana.
+            </p>
+
+            <div class="grid-datos">
+                <div class="dato-item">
+                    <span class="dato-titulo">Distancia</span>
+                    <span class="dato-valor" id="gpx-distancia">18.5 km</span>
+                </div>
+                <div class="dato-item">
+                    <span class="dato-titulo">Tiempo Estimado</span>
+                    <span class="dato-valor" id="gpx-tiempo">2h 15m</span>
+                </div>
+                <div class="dato-item">
+                    <span class="dato-titulo">Desnivel Positivo</span>
+                    <span class="dato-valor" id="gpx-desnivel">+450 m</span>
+                </div>
+            </div>
+
+        <section class="contenedor-mapa">
+            <div class="mapa-wrapper">
+                <div id="mapa"></div>
+                <p class="instrucciones-mapa"> El mapa interactivo muestra la ruta satelital exacta.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script>
+        // Cambia este nombre en cada HTML por el archivo correcto que tienes en tu carpeta
+        const ARCHIVO_GPX_ACTUAL = 'Rutas/Carranza.gpx'; 
+    </script>
+    <script src="mapa.js"></script>
+</body>
+</html>
+        </section>
+
+        <section class="contenedor-mapa">
+            <div class="mapa-wrapper">
+                <div id="mapa"></div>
+                <p class="instrucciones-mapa">💡 Toca los marcadores en el mapa para ver fotos de las desviaciones críticas.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="leaflet.js"></script>
+    <script src="gpx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script src="js/mapa.js"></script>
+</body>
+</html>
