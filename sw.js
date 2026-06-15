@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xicorutas-v3'; 
+const CACHE_NAME = 'xicorutas-v6'; 
 
 const ASSETS_TO_CACHE = [
   './',
@@ -32,13 +32,10 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('XicoRutas: Guardando archivos uno por uno...');
-      
-      // EL TRUCO SALVA-VIDAS: Guardar uno por uno e ignorar los que den error 404
       return Promise.all(
         ASSETS_TO_CACHE.map(url => {
           return cache.add(url).catch(error => {
-            console.error('Archivo rebelde que no se encontró (ignorado):', url);
-            // No hacemos que la promesa falle, así el caché sigue guardando lo demás
+            console.error('error aqui rompe:', url);
           });
         })
       );
@@ -62,11 +59,39 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Estrategia: Cache first, luego network (mejor para offline)
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    }).catch(() => {
-      console.log('XicoRutas: Modo offline activo y recurso no encontrado.');
-    })
+    caches.match(event.request)
+      .then((cachedResponse) => {
+        if (cachedResponse) {
+          console.log('📦 Cache hit:', event.request.url);
+          return cachedResponse;
+        }
+        
+        // No está en cache, intentar red
+        return fetch(event.request)
+          .then((networkResponse) => {
+            // Cuidado: no cachear respuestas vacías o errores
+            if (!networkResponse || networkResponse.status !== 200) {
+              return networkResponse;
+            }
+            // Cachear nueva respuesta para futuro
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+            return networkResponse;
+          })
+          .catch(() => {
+            console.log('❌ Offline: No se pudo cargar', event.request.url);
+            // Retornar una respuesta genérica si es una navegación
+            if (event.request.mode === 'navigate') {
+              return caches.match('./index.html');
+            }
+          });
+      })
+      .catch(() => {
+        console.error('🔥 Error crítico en SW');
+      })
   );
 });
