@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xicorutas-v2'; 
+const CACHE_NAME = 'xicorutas-v3'; 
 
 const ASSETS_TO_CACHE = [
   './',
@@ -31,8 +31,17 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('XicoRutas: Guardando archivos en caché de emergencia...');
-      return cache.addAll(ASSETS_TO_CACHE);
+      console.log('XicoRutas: Guardando archivos uno por uno...');
+      
+      // EL TRUCO SALVA-VIDAS: Guardar uno por uno e ignorar los que den error 404
+      return Promise.all(
+        ASSETS_TO_CACHE.map(url => {
+          return cache.add(url).catch(error => {
+            console.error('Archivo rebelde que no se encontró (ignorado):', url);
+            // No hacemos que la promesa falle, así el caché sigue guardando lo demás
+          });
+        })
+      );
     }).then(() => self.skipWaiting())
   );
 });
