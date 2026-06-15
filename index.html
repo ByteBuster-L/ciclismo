@@ -89,5 +89,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="animation/animaciones.js"></script>
+<script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // El slash inicial '/' asegura que lo busque en la raíz, no en carpetas
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('XicoRutas: Service Worker activo en', reg.scope))
+            .catch(err => console.error('XicoRutas: Falló el Service Worker', err));
+        });
+      }
+    </script>
 </body>
 </html>

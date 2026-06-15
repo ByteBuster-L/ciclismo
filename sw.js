@@ -1,28 +1,25 @@
-// 1. CAMBIA LA VERSIÓN PARA FORZAR LA ACTUALIZACIÓN
 const CACHE_NAME = 'xicorutas-v2'; 
 
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/ruta-carranza.html',
-  '/ruta-tepezintla.html',
-  '/ruta-union.html',
+  './',
+  './index.html',
+  './ruta-carranza.html',
+  './ruta-tepezintla.html',
+  './ruta-union.html',
   
-  // 2. RUTAS CON SUS CARPETAS CORRECTAS (Importante para que el Service Worker las encuentre) NO MOVER
-  '/css/styles.css',
-  '/animation/animaciones.js',
-  '/js/mapa.js',
-  '/Rutas/Carranza.gpx',
-  '/Rutas/Xico-Tepetzintla.gpx',
-  '/Rutas/xico-union.gpx',
+  './css/styles.css',
+  './animation/animaciones.js',
+  './js/mapa.js',
+  
+  './Rutas/Carranza.gpx',
+  './Rutas/Xico-Tepetzintla.gpx',
+  './Rutas/xico-union.gpx',
 
-
-  '/img/portada.jpg',
-  '/img/principiantes.jpg',
-  '/img/intermedios.jpg',
-  '/img/avanzados.jpg',
-
-  // 4. LIBRERÍAS DE INTERNET
+  './img/portada.jpg',
+  './img/principiantes.jpg',
+  './img/intermedios.jpg',
+  './img/avanzados.jpg',
+  
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js',

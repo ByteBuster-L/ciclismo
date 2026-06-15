@@ -68,7 +68,17 @@
         // Cambia este nombre en cada HTML por el archivo correcto que tienes en tu carpeta
         const ARCHIVO_GPX_ACTUAL = 'Rutas/xico-union.gpx'; 
     </script>
-    <script src="mapa.js"></script>
+    <script src="js/mapa.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // El slash inicial '/' asegura que lo busque en la raíz, no en carpetas
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('XicoRutas: Service Worker activo en', reg.scope))
+            .catch(err => console.error('XicoRutas: Falló el Service Worker', err));
+        });
+      }
+    </script>
 </body>
 </html>
         </section>
