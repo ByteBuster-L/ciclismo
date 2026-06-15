@@ -1,6 +1,6 @@
 const CACHE_NAME = 'xicorutas-v1';
 
-// Todos los archivos que tu app necesita para sobrevivir en el cerro sin internet
+// Todos los archivos que la app necesita para sobrevivir sin internet
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
