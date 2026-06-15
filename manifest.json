@@ -1,0 +1,17 @@
+{
+  "name": "XicoRutas - Navegación de Ciclismo",
+  "short_name": "XicoRutas",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#F7F5F0",
+  "theme_color": "#C2410C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3159/3159317.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

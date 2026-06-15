@@ -1,0 +1,498 @@
+:root {
+    --bg-beige: #F7F5F0;
+    --text-dark: #222222;
+    --text-gray: #555555;
+    --accent: #C2410C; /* Un naranja óxido que combina increíble con beige */
+    --nav-bg: rgba(247, 245, 240, 0.95);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-beige);
+    color: var(--text-dark);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ================= NAVEGACIÓN ================= */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px); /* Efecto cristal */
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-link:hover { color: var(--accent); }
+
+/* Menú Desplegable (Hover) */
+.dropdown { position: relative; }
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0;
+    background: var(--bg-beige);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    list-style: none;
+    min-width: 180px;
+    border-top: 3px solid var(--accent);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid #e0ddd5;
+}
+
+.dropdown-menu li a:hover { background: #e0ddd5; }
+
+/* El hover que pediste */
+.dropdown:hover .dropdown-menu { display: block; }
+
+/* Botón Hamburguesa (Oculto en PC) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px; height: 3px;
+    background-color: var(--text-dark);
+    transition: all 0.3s;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Foto real de ciclismo */
+    background: url('../img/portada.jpg') center/cover no-repeat;
+    margin-top: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Degradado oscuro para que el texto blanco resalte */
+    background: linear-gradient(to bottom, rgba(34,34,34,0.4), rgba(34,34,34,0.8));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff; /* Este texto se queda blanco por la foto oscura */
+}
+
+.titulo-principal {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 6rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.btn-primario {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.3s;
+}
+
+.btn-primario:hover { transform: scale(1.05); }
+
+/* ================= CATEGORÍAS ================= */
+.seccion-categorias {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center; /* Centramos el título de la sección */
+}
+
+.titulo-seccion {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    color: var(--text-dark);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Subrayado fino para el título de la sección como en la imagen */
+.titulo-seccion::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Ancho de la línea */
+    height: 3px; /* Grosor de la línea */
+    background-color: var(--text-dark); /* Color de la línea */
+}
+
+.grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Tarjetas más anchas */
+    gap: 40px;
+    text-align: left; /* Volvemos a alinear el texto a la izquierda para el contenido de las tarjetas */
+    margin-top: 60px;
+}
+
+/* Estilo de la tarjeta adaptado de la referencia */
+.tarjeta-servicio {
+    background-color: #ffffff;
+    border-radius: 20px; /* Bordes redondeados para el contenedor principal */
+    overflow: hidden; /* Importante para que la imagen se adapte a los bordes */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-5px);
+}
+
+/* Contenedor de la imagen adaptado */
+.tarjeta-imagen {
+    position: relative;
+    height: 300px; /* Altura de la imagen */
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px 20px 0 0; /* Bordes superiores redondeados */
+    overflow: hidden;
+}
+
+/* Título de la tarjeta sobre la imagen, alineado a la izquierda inferior */
+.titulo-tarjeta {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem;
+    color: #ffffff; /* Texto blanco sobre la imagen */
+    z-index: 10;
+    line-height: 1.1;
+}
+
+/* Superposición de degradado para que el texto blanco resalte */
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(34,34,34,0.1), rgba(34,34,34,0.7));
+    z-index: 5;
+}
+
+/* Información de texto debajo de la imagen */
+.tarjeta-info {
+    padding: 30px 20px;
+}
+
+.distancia {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+/* Estilo de botón contorneado (outline) de la imagen de referencia */
+.btn-outline {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 2px solid var(--accent); /* Contorno naranja óxido */
+    color: var(--accent); /* Texto naranja óxido */
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 25px; /* Bordes muy redondeados */
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: var(--accent);
+    color: #ffffff;
+}
+
+.contenedor-detalle {
+    max-width: 1200px;
+    margin: 120px auto 60px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas simétricas en PC */
+    gap: 50px;
+}
+
+.badge-categoria {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: var(--accent);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.nombre-ruta {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.descripcion-larga {
+    color: var(--text-gray);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+/* Fichas de datos técnicos */
+.grid-datos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.dato-item {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    border-left: 4px solid var(--text-dark);
+}
+
+.dato-titulo {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.dato-valor {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+/* Galería interna */
+.galeria-ruta h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.grid-fotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.grid-fotos img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Estilos del Mapa */
+.contenedor-mapa {
+    position: relative;
+}
+
+.mapa-wrapper {
+    position: sticky; /* Se queda fijo al hacer scroll en computadoras */
+    top: 100px;
+}
+
+#mapa {
+    height: 500px;
+    width: 100%;
+    border-radius: 24px; /* Bordes muy redondos como tus tarjetas */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    background-color: #ddd;
+}
+
+.instrucciones-mapa {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Estilos de imágenes dentro de popups de Leaflet */
+.foto-popup-gpx {
+    width: 100%;
+    max-width: 220px;
+    border-radius: 10px;
+    margin-top: 8px;
+    display: block;
+}
+
+/* Adaptación para Celulares */
+@media (max-width: 900px) {
+    .contenedor-detalle {
+        grid-template-columns: 1fr; /* Una sola columna: arriba info, abajo mapa */
+        margin-top: 100px;
+        gap: 30px;
+    }
+    
+    .mapa-wrapper {
+        position: relative;
+        top: 0;
+    }
+    
+    #mapa {
+        height: 350px; /* Un poco más bajo en pantallas pequeñas */
+    }
+}
+
+/* ================= POPUP DE ALERTA ESTILIZADO ================= */
+.leaflet-popup-content-wrapper {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.leaflet-popup-content {
+    margin: 0;
+}
+
+.popup-alert-card {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+}
+
+.popup-header {
+    background-color: var(--accent); /* Naranja óxido */
+    color: #fff;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.popup-header img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1); /* Volver blanco el icono negro */
+}
+
+.popup-header h4 {
+    font-family: 'Bebas Neue', cursive;
+    margin: 0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.popup-body {
+    padding: 15px;
+}
+
+.popup-body img.foto-popup-gpx {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.popup-body p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-gray);
+}
+
+/* ================= DISEÑO RESPONSIVE (CELULARES) ================= */
+@media (max-width: 768px) {
+    .titulo-principal { font-size: 4rem; }
+
+    .grid-categorias { grid-template-columns: 1fr; }
+    
+    .menu-toggle { display: flex; } /* Mostramos la hamburguesa */
+    
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: -100%; /* Oculto fuera de la pantalla */
+        flex-direction: column;
+        background-color: var(--bg-beige);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        gap: 0;
+    }
+
+    .nav-menu.active { left: 0; } /* Clase que activaremos con JS */
+
+    .nav-item { padding: 20px 0; border-bottom: 1px solid #e0ddd5; }
+    
+    .dropdown-menu {
+        position: relative;
+        box-shadow: none;
+        border-top: none;
+        background: #e0ddd5;
+        margin-top: 10px;
+    }
+}
